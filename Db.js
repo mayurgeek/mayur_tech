@@ -6,14 +6,7 @@ var connection = mysql.createConnection({
   host: HOST,
   user: USER,
   password: PASSWORD,
-  database: DB,
-  waitForConnections: true,
-  connectionLimit: 10,
-  maxIdle: 10,
-  idleTimeout: 60000,
-  queueLimit: 0,
-  enableKeepAlive: true,
-  keepAliveInitialDelay: 0
+  database: DB
 });
 
 let dbcount=0;
