@@ -2,7 +2,7 @@ import { queryListen } from "../common/queryListner.js";
 import resMsg from "../common/resMsg.js";
 
 // FOR GET TASK LIST
-export async function task(req,res) {
+ async function task(req,res) {
     let search = req.body.search.trim();
     let query ="";
     if(search){
@@ -16,7 +16,7 @@ export async function task(req,res) {
 }
 
 // ADD TASK EVENT
-export async function addTask(req,res) {
+ async function addTask(req,res) {
     let title = req.body.title;
     let query = "INSERT INTO `task_list`(`id`, `step`, `title`)SELECT COALESCE( MAX(`id`)+1,1),1,'"+title+"' FROM task_list;";
    let response = await queryListen(query)
@@ -28,7 +28,7 @@ export async function addTask(req,res) {
 }
 
 // UPDATE TASK EVENT
-export async function updateTask(req,res) {
+ async function updateTask(req,res) {
     let updatedStep = req.body.updatedStep
     if(updatedStep=="rigth"){
         query = "UPDATE task_list SET step = (CASE WHEN step < 4 THEN step + 1 ELSE step END) WHERE id = 1";
@@ -46,7 +46,7 @@ export async function updateTask(req,res) {
 }
 
 // FOR DELETE EVENT
-export async function deleteTask(req,res) {
+ async function deleteTask(req,res) {
     let id = req.body.id
     let query = "DELETE FROM `task_list` WHERE id = '"+id+"'";
    let response = await queryListen(query)
