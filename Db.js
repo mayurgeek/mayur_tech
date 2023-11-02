@@ -1,6 +1,6 @@
 import mysql from "mysql2";
 import "dotenv/config";
-let {HOST,USER,PASSWORD,DB} = process.env
+let { HOST, USER, PASSWORD, DB } = process.env
 
 var connection = mysql.createConnection({
   host: HOST,
@@ -9,10 +9,10 @@ var connection = mysql.createConnection({
   database: DB
 });
 
-let dbcount=0;
+let dbcount = 0;
 connection.connect(function (err) {
-  dbcount++ ;
-  console.log("trying--to--connect--db"+dbcount);
+  dbcount++;
+  console.log("trying--to--connect--db" + dbcount);
   if (err) {
     console.log('error when connecting to db:', err);
     setTimeout(connection.connect(), 2000);
@@ -21,7 +21,7 @@ connection.connect(function (err) {
 
 connection.on('error', function (err) {
   console.log('connection.on---', err);
-  if (err) {connection.connect();} 
+  if (err) { connection.connect(); }
 
 });
 

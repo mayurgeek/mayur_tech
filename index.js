@@ -9,7 +9,7 @@ let serverPort = process.env.SERVERPORT
 
 connection;
 const app = express();
-      app.use(cors());
+app.use(cors());
 
 app.use(bodyParser.json({ limit: "500mb" }));
 app.use(
@@ -21,21 +21,6 @@ app.use(
 );
 
 app.use(express.static("public"));
-
-
-connection.query(
-  "SET GLOBAL sql_mode=(SELECT REPLACE(@@sql_mode,'ONLY_FULL_GROUP_BY',''))",
-  (err, rows) => {
-    if (err) {
-      console.log(
-        "error-------------------SET GLOBAL sql_mode===========" + err
-      );
-    } else {
-      console.log("--ok-----------------SET GLOBAL sql_mode======ok=====");
-      console.log(rows);
-    }
-  }
-);
 
 app.use(
   taskRouter
@@ -49,8 +34,8 @@ app.get("/server-check", (_req, res) => {
   });
 });
 
-  
-  app.listen(serverPort||3000, () => {
-    console.log(`server is running at ${serverPort||3000}`);
-  });
+
+app.listen(serverPort || 8888, () => {
+  console.log(`server is running at ${serverPort || 8888}`);
+});
 
